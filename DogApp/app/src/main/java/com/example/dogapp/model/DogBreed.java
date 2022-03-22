@@ -3,8 +3,9 @@ package com.example.dogapp.model;
 import com.google.gson.annotations.SerializedName;
 
 public class DogBreed {
+
     @SerializedName("id")
-    private  int id;
+    private int id;
 
     @SerializedName("name")
     private String name;
@@ -18,8 +19,13 @@ public class DogBreed {
     @SerializedName("url")
     private String url;
 
-    @SerializedName("bred_for")
-    private String bredFor;
+    public DogBreed(int id, String name, String lifeSpan, String origin, String url) {
+        this.id = id;
+        this.name = name;
+        this.lifeSpan = lifeSpan;
+        this.origin = origin;
+        this.url = url;
+    }
 
     public int getId() {
         return id;
@@ -59,13 +65,5 @@ public class DogBreed {
 
     public void setUrl(String url) {
         this.url = url;
-    }
-
-    public String getBredFor() {
-        return bredFor;
-    }
-
-    public void setBredFor(String bredFor) {
-        this.bredFor = bredFor;
     }
 }

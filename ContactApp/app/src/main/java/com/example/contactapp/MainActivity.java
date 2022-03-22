@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
         MenuItem menuItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setQueryHint("Tìm kiếm trong danh bạ");
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity {
                             String email = data.getStringExtra("email");
                             contactViewModel.insert(new Contact(avatar, firstName, lastName, phone, email));
                             contactAdapter.setContacts(contactDao.getAll());
-                            Toast.makeText(getApplicationContext(), "Thêm liên hệ thành công!!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -150,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onActivityResult(ActivityResult result) {
                         if (result.getResultCode() == 2) {
                             contactAdapter.setContacts(contactDao.getAll());
-                            Toast.makeText(getApplicationContext(), "Xóa liên hệ thành công!!", Toast.LENGTH_LONG).show();
                         }
                     }
                 }

@@ -4,23 +4,38 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ArrayAdapter;
 
 import com.example.calculator.databinding.ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+
+public class MainActivity extends AppCompatActivity {
+
     private ActivityMainBinding binding;
+    private ArrayAdapter<String> arrayAdapter;
 
-    private final String[] btnNames = {
-            "7", "8", "9", "+/-", "←",
-            "4", "5", "6", "×", "÷",
-            "1", "2", "3", "-",
-            "C", "0", ".", "+", "="
-    };
-    private String expression = "";
-    private Boolean isEqual = false;
-    private final Handle h = new Handle();
+    public int Cal(String st)
+    {
+        String operators[]=st.split("[0-9]+");
+        String operands[]=st.split("[+-]");
+        int result = Integer.parseInt(operands[0]);
+        for (int i=1;i<operands.length;i++)
+        {
+            if (operators[i].equals("+"))
+            {
+                result+=Integer.parseInt(operands[i]);
+            }
+            else
+            {
+                result-=Integer.parseInt(operands[i]);
 
+            }
+        }
+        return result;
+
+
+
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,114 +43,131 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         View view = binding.getRoot();
         setContentView(view);
 
-        createListBtn();
+
+        binding.btn0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn0.getText().toString());
+                binding.tvResult.append(binding.btn0.getText().toString());
+            }
+        });
+        binding.btn1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn1.getText().toString());
+                binding.tvResult.append(binding.btn1.getText().toString());
+            }
+        });
+        binding.btn2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn2.getText().toString());
+                binding.tvResult.append(binding.btn2.getText().toString());
+
+            }
+        });
+        binding.btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn3.getText().toString());
+                binding.tvResult.append(binding.btn3.getText().toString());
+
+            }
+        });
+        binding.btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn4.getText().toString());
+                binding.tvResult.append(binding.btn4.getText().toString());
+
+            }
+        });
+        binding.btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn5.getText().toString());
+                binding.tvResult.append(binding.btn5.getText().toString());
+
+            }
+        });
+        binding.btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn6.getText().toString());
+                binding.tvResult.append(binding.btn6.getText().toString());
+
+            }
+        });
+        binding.btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn7.getText().toString());
+                binding.tvResult.append(binding.btn7.getText().toString());
+
+            }
+        });
+        binding.btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn8.getText().toString());
+                binding.tvResult.append(binding.btn8.getText().toString());
+
+            }
+        });
+        binding.btn9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText(binding.btn9.getText().toString());
+                binding.tvResult.append(binding.btn9.getText().toString());
+
+            }
+        });
+        binding.btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvResult.append(binding.btnAdd.getText().toString());
+
+            }
+        });
+        binding.btnSub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvResult.append(binding.btnSub.getText().toString());
+            }
+        });
+        binding.btnMul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvResult.append(binding.btnMul.getText().toString());
+
+            }
+        });
+        binding.btnDev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvResult.append(binding.btnDev.getText().toString());
+
+            }
+        });
+
+        binding.btnEnter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String st=binding.tvResult.getText().toString();
+                binding.tvNum.setText(""+Cal(st));
+                binding.tvResult.append("="+Cal(st));
+
+            }
+        });
+        binding.btnDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                binding.tvNum.setText("");
+                binding.tvResult.setText("");
+            }
+        });
+
     }
 
-    private void createListBtn() {
-        Button btn;
-        for (int i = 0; i < 10; i++) {
-            btn = new Button(this);
-            btn.setText(btnNames[i]);
-            btn.setTextSize(25);
-            btn.setId(i);
-            btn.setOnClickListener(this);
-            binding.grl1.addView(btn, 200, 200);
-        }
-        for (int i = 10; i < btnNames.length - 1; i++) {
-            btn = new Button(this);
-            btn.setText(btnNames[i]);
-            btn.setTextSize(25);
-            btn.setId(i);
-            btn.setOnClickListener(this);
-            binding.grl3.addView(btn, 200, 200);
-        }
-        btn = new Button(this);
-        btn.setText(btnNames[btnNames.length - 1]);
-        btn.setTextSize(25);
-        btn.setId(btnNames.length - 1);
-        btn.setOnClickListener(this);
-//        btn.setBackgroundColor(Color.parseColor("#025cb2"));
-        binding.grl4.addView(btn, 200, 400);
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (isEqual == true) {
-            binding.edtResult.setText("");
-            binding.tvLog.setText("");
-            expression = "";
-            isEqual = false;
-        }
-        Double result;
-        String temp;
-        int id = view.getId();
-        switch (id) {
-            case 0:
-            case 1:
-            case 2:
-            case 5:
-            case 6:
-            case 7:
-            case 10:
-            case 11:
-            case 12:
-            case 15:
-            case 16:
-                binding.edtResult.append(btnNames[id]);
-                break;
-            case 3:
-                temp = binding.edtResult.getText().toString();
-                expression = "(1-2)*(" + expression + temp + ")";
-                binding.tvLog.setText("-(" + binding.tvLog.getText() + temp + ")");
-                break;
-            case 4:
-                temp = binding.edtResult.getText().toString();
-                if (temp != null && temp.length() > 0) {
-                    binding.edtResult.setText(temp.substring(0, temp.length() -1));
-                }
-                break;
-            case 8:
-                binding.tvLog.append(binding.edtResult.getText().toString() + btnNames[id]);
-                expression = expression + binding.edtResult.getText().toString() + "*";
-                binding.edtResult.setText("");
-                break;
-            case 9:
-                binding.tvLog.append(binding.edtResult.getText().toString() + btnNames[id]);
-                expression = expression + binding.edtResult.getText().toString() + "/";
-                binding.edtResult.setText("");
-                break;
-            case 13:
-            case 17:
-                temp = binding.edtResult.getText().toString() + btnNames[id];
-                binding.tvLog.append(temp);
-                expression = expression + temp;
-                binding.edtResult.setText("");
-                break;
-            case 14:
-                binding.edtResult.setText("");
-                binding.tvLog.setText("");
-                expression = "";
-                break;
-            case 18:
-                if (expression != "") {
-                    isEqual = true;
-                    temp = binding.edtResult.getText().toString();
-                    binding.tvLog.append(temp + btnNames[id]);
-                    expression = expression + temp;
-                    result = h.valueMath(expression);
-                    if (result != Double.NaN) {
-                        if (Math.round(result) == result) {
-                            binding.edtResult.setText("" + Math.round(result));
-                            binding.tvLog.append("" + Math.round(result));
-                        } else {
-                            binding.edtResult.setText("" + result);
-                            binding.tvLog.append("" + result);
-                        }
-                    } else {
-                        binding.edtResult.setText("Err");
-                    }
-                }
-                break;
-        }
-    }
 }

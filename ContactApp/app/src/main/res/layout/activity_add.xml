@@ -17,7 +17,8 @@
             android:id="@+id/img_avatar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/ic_baseline_person_24"/>
+            android:src="@drawable/ic_baseline_person_24"
+            android:background="@android:color/holo_blue_dark"/>
 
         <ImageView
             android:id="@+id/btn_photo"
@@ -46,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="20dp"
-            android:hint="Tên"
+            android:hint="Name"
             android:textSize="18sp"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
@@ -68,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="20dp"
-            android:hint="Họ"
+            android:hint="Last Name"
             android:textSize="18sp"
             tools:ignore="TouchTargetSizeCheck" />
     </LinearLayout>
@@ -91,7 +92,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="20dp"
-            android:hint="Số điện thoại"
+            android:hint="Phone Number"
             android:inputType="phone"
             android:textSize="18sp"
             tools:ignore="TouchTargetSizeCheck" />
