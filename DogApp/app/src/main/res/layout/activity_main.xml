@@ -7,13 +7,13 @@
     tools:context=".MainActivity">
 
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_dogs"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2" />
-
-
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/dogs_nav"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

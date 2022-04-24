@@ -24,44 +24,14 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding binding;
-    private DogsApiService apiService;
-    private DogsAdapter dogsAdapter;
-    private ArrayList<DogBreed> dogBreeds;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
 
-        dogBreeds = new ArrayList<DogBreed>();
-        dogsAdapter = new DogsAdapter(dogBreeds);
-        binding.rvDogs.setAdapter(dogsAdapter);
+        setContentView(R.layout.activity_main);
 
 
-        apiService = new DogsApiService();
-        apiService.getDogs()
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<List<DogBreed>>() {
-                    @Override
-                    public void onSuccess(@NonNull List<DogBreed> dogBreedsList) {
-                        Log.d("DEBUG1","Success" );
-                        for (DogBreed dog:dogBreedsList)
-                        {
-                            Log.d("DEBUG1",dog.getName());
-
-                            dogBreeds.add(dog);
-                            dogsAdapter.notifyDataSetChanged();
-                        }
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-
-                    }
-                });
     }
 }

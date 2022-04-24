@@ -87,12 +87,7 @@ public class MainActivity extends AppCompatActivity {
         contactDao = appDatabase.contactDao();
 
         contacts = new ArrayList<>();
-//        Executors.newSingleThreadExecutor().execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                contacts.addAll(contactDao.getAll());
-//            }
-//        });
+
 
         contactAdapter = new ContactAdapter(contacts, this);
         binding.rvContacts.setAdapter(contactAdapter);
